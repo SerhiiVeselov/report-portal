@@ -1,0 +1,10 @@
+local:
+  url: http://localhost:8084/
+  username:
+  password:
+
+prod:
+  url: https://reportportal.epam.com/ui/#login
+  username: serhii_veselov@epam.com
+  password:
+
