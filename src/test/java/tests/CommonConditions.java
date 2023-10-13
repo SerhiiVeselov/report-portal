@@ -1,7 +1,6 @@
 package tests;
 
 import actions.ExampleAction;
-import core.ConfigReader;
 import org.testng.annotations.Parameters;
 import pages.ExamplePage;
 import core.DriverSingleton;
@@ -22,9 +21,6 @@ public class CommonConditions {
     public static FluentWait<WebDriver> fluentWait;
     public static ExamplePage examplePage;
     public static ExampleAction exampleAction;
-    private static String url;
-    private static String username;
-    private static String password;
 
     @BeforeSuite
     @Parameters("environment")
