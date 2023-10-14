@@ -24,6 +24,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
+        ignoreFilenameCase: true
     - run: ls -la
     - name: Set up JDK 20
       uses: actions/setup-java@v3
