@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: Build and Test
 
 on:
   push:
@@ -21,9 +21,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
-      with:
-        ref: ${{github.ref}}
+      uses: actions/checkout@v4
     - name: Set up JDK 20
       uses: actions/setup-java@v3
       with:
@@ -31,4 +29,4 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn clean test -f report-portal/pom.xml
+      run: mvn clean test
