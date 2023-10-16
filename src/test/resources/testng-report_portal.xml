@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Report Portal tests" verbose="1">
+    <test name="Report Portal">
+        <classes>
+            <class name="tests.ReportPortalTest"/>
+        </classes>
+    </test>
+    <listeners>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+    </listeners>
+</suite>
