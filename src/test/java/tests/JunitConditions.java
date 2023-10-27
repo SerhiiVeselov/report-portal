@@ -5,25 +5,23 @@ import actions.LaunchesAction;
 import actions.LoginAction;
 import actions.SidebarAction;
 import core.DriverSingleton;
-import core.LoggerSingleton;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import pages.FiltersPage;
 
-public class CommonConditions {
+public class JunitConditions {
 
-    protected static WebDriver driver;
-    public static LoggerSingleton log;
+    public WebDriver driver;
     public static LoginAction loginAction;
     public static SidebarAction sidebarAction;
     public static FiltersAction filtersAction;
     public static FiltersPage filtersPage;
     public static LaunchesAction launchesAction;
 
+    @BeforeEach
+    public void setUp() {
+        System.out.println("Opening the browser");
 
-    @BeforeMethod
-    public static void setUp() {
         driver = DriverSingleton.getDriver();
 
         System.setProperty("env", "prod");
@@ -31,14 +29,13 @@ public class CommonConditions {
         loginAction = new LoginAction(driver);
         sidebarAction = new SidebarAction(driver);
         filtersAction = new FiltersAction(driver);
-        filtersPage = new FiltersPage(driver);
         launchesAction = new LaunchesAction(driver);
 
-        log = new LoggerSingleton();
+        filtersPage = new FiltersPage(driver);
     }
 
-    @AfterMethod
-    public static void stopBrowser() {
+    @AfterEach
+    public void closeWebDriver() {
         DriverSingleton.closeDriver();
     }
 }

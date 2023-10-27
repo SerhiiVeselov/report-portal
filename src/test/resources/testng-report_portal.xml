@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Report Portal tests" verbose="1">
-    <test name="Report Portal">
+<suite name="Report Portal Tests" verbose="1">
+    <test name="ReportPortalTest">
         <classes>
-            <class name="tests.ReportPortalTest"/>
+            <class name="tests.FiltersTest"/>
+            <class name="tests.LaunchViewTest"/>
+        </classes>
+    </test>
+    <test name="JunitTest">
+        <classes>
+            <class name="tests.JunitTest"/>
         </classes>
     </test>
     <listeners>

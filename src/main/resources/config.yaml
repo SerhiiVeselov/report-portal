@@ -1,10 +1,11 @@
 local:
-  url: http://localhost:8084/
-  username:
-  password:
+  url: http://localhost:8084/ui/#login
+  username: superadmin
+  password: erebus
 
 prod:
   url: https://reportportal.epam.com/ui/#login
-  username: serhii_veselov@epam.com
-  password:
+  username: pungvun4uk
+  password: Welcome!123
+
 
