@@ -7,7 +7,7 @@ public class LoggerSingleton {
 
     private static Logger log;
 
-    private LoggerSingleton() {}
+    public LoggerSingleton() {}
 
     public static Logger getLogger() {
         if (log == null) {
