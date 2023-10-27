@@ -15,6 +15,7 @@ public class DriverSingleton {
 
     public static WebDriver getDriver() {
         if (null == driver) {
+        System.out.println("Creating driver instance");
             switch (System.getProperty("browser")) {
                 case "firefox": {
                     WebDriverManager.firefoxdriver().setup();
@@ -31,6 +32,7 @@ public class DriverSingleton {
                     ChromeOptions options = new ChromeOptions();
                     options.addArguments("--remote-allow-origins=*");
                     options.addArguments("--headless");
+
                     driver = new ChromeDriver(options);
                 }
             }
