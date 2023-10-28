@@ -95,16 +95,15 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.2</version>
                 <configuration>
+                    <parallel>methods</parallel>
+                    <threadCount>4</threadCount>
                     <testFailureIgnore>true</testFailureIgnore>
-
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/testng-report_portal.xml</suiteXmlFile>
                     </suiteXmlFiles>
-
                     <systemPropertyVariables>
                         <browser>chrome</browser>
                     </systemPropertyVariables>
-
                     <systemProperties>
                         <property>
                             <name>allure.results.directory</name>

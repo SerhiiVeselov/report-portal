@@ -9,11 +9,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverSingleton {
 
-    private static WebDriver driver;
+    WebDriver driver = null;
 
-    private DriverSingleton() {}
-
-    public static WebDriver getDriver() {
+    public WebDriver getDriver() {
         if (null == driver) {
         System.out.println("Creating driver instance");
             switch (System.getProperty("browser")) {
@@ -31,7 +29,7 @@ public class DriverSingleton {
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions options = new ChromeOptions();
                     options.addArguments("--remote-allow-origins=*");
-                    options.addArguments("--headless");
+                    //options.addArguments("--headless");
 
                     driver = new ChromeDriver(options);
                 }
@@ -41,7 +39,7 @@ public class DriverSingleton {
         return driver;
     }
 
-    public static void closeDriver() {
+    public void closeDriver() {
         if (driver != null) {
             driver.quit();
             driver = null;

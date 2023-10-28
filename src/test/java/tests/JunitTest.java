@@ -1,5 +1,9 @@
 package tests;
 
+import actions.FiltersAction;
+import actions.LaunchesAction;
+import actions.LoginAction;
+import actions.SidebarAction;
 import core.LoggerSingleton;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.parallel.Execution;
@@ -9,8 +13,7 @@ import org.slf4j.Logger;
 import static org.junit.jupiter.api.parallel.ExecutionMode.CONCURRENT;
 
 public class JunitTest extends JunitConditions {
-
-    private final Logger log = LoggerSingleton.getLogger();
+        private final Logger log = LoggerSingleton.getLogger();
 
         @ParameterizedTest
         @Execution(CONCURRENT)
@@ -23,7 +26,11 @@ public class JunitTest extends JunitConditions {
         @Description("Add filter: Launch name + Failed")
         public void setLaunchNameAndFailed(String launchName, String filterInput, int launchesAmountOutput) throws InterruptedException {
             log.info("JUnit Test Name: Add filter: Launch name + Failed");
-            loginAction.doLogin(driver);
+            LoginAction loginAction = new LoginAction(getDriver());
+            SidebarAction sidebarAction = new SidebarAction(getDriver());
+            FiltersAction filtersAction = new FiltersAction(getDriver());
+            LaunchesAction launchesAction = new LaunchesAction(getDriver());
+            loginAction.doLogin();
             sidebarAction.openLaunchesPage();
             filtersAction.activateFiltering();
             filtersAction.addLaunchNameFilter(launchName);
@@ -42,7 +49,11 @@ public class JunitTest extends JunitConditions {
         @Description("Add Launch name + Skipped")
         public void setLaunchNameAndSkipped(String launchName, String filterInput, int launchesAmountOutput) throws InterruptedException {
             log.info("JUnit Test Name: Add Launch name + Skipped");
-            loginAction.doLogin(driver);
+            LoginAction loginAction = new LoginAction(getDriver());
+            SidebarAction sidebarAction = new SidebarAction(getDriver());
+            FiltersAction filtersAction = new FiltersAction(getDriver());
+            LaunchesAction launchesAction = new LaunchesAction(getDriver());
+            loginAction.doLogin();
             sidebarAction.openLaunchesPage();
             filtersAction.activateFiltering();
             filtersAction.addLaunchNameFilter(launchName);
@@ -60,7 +71,11 @@ public class JunitTest extends JunitConditions {
         @Description("Add Launch name + Product Bug")
         public void setLaunchNameAndProductBug(String launchName, String filterInput, int launchesAmountOutput) throws InterruptedException {
             log.info("JUnit Test Name: Add Launch name + Product Bug");
-            loginAction.doLogin(driver);
+            LoginAction loginAction = new LoginAction(getDriver());
+            SidebarAction sidebarAction = new SidebarAction(getDriver());
+            FiltersAction filtersAction = new FiltersAction(getDriver());
+            LaunchesAction launchesAction = new LaunchesAction(getDriver());
+            loginAction.doLogin();
             sidebarAction.openLaunchesPage();
             filtersAction.activateFiltering();
             filtersAction.addLaunchNameFilter(launchName);

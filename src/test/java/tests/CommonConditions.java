@@ -12,8 +12,7 @@ import org.testng.annotations.BeforeMethod;
 import pages.FiltersPage;
 
 public class CommonConditions {
-
-    protected static WebDriver driver;
+    WebDriver driver = null;
     public static LoggerSingleton log;
     public static LoginAction loginAction;
     public static SidebarAction sidebarAction;
@@ -21,24 +20,22 @@ public class CommonConditions {
     public static FiltersPage filtersPage;
     public static LaunchesAction launchesAction;
 
-
+    public WebDriver getDriver() {
+        return driver;
+    }
     @BeforeMethod
-    public static void setUp() {
-        driver = DriverSingleton.getDriver();
-
+    public void setUp() {
+        driver = new DriverSingleton().getDriver();
         System.setProperty("env", "prod");
-
-        loginAction = new LoginAction(driver);
-        sidebarAction = new SidebarAction(driver);
-        filtersAction = new FiltersAction(driver);
-        filtersPage = new FiltersPage(driver);
-        launchesAction = new LaunchesAction(driver);
-
+        loginAction = new LoginAction(getDriver());
+        sidebarAction = new SidebarAction(getDriver());
+        filtersAction = new FiltersAction(getDriver());
+        launchesAction = new LaunchesAction(getDriver());
         log = new LoggerSingleton();
     }
 
     @AfterMethod
-    public static void stopBrowser() {
-        DriverSingleton.closeDriver();
+    public void stopBrowser() {
+        getDriver().quit();
     }
 }

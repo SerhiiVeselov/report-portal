@@ -1,41 +1,49 @@
 package tests;
 
-import actions.FiltersAction;
-import actions.LaunchesAction;
-import actions.LoginAction;
-import actions.SidebarAction;
+import core.ConfigReader;
 import core.DriverSingleton;
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import pages.FiltersPage;
+import util.GetCurrentTimeToString;
+import java.io.File;
+import java.io.IOException;
 
 public class JunitConditions {
-
-    public WebDriver driver;
-    public static LoginAction loginAction;
-    public static SidebarAction sidebarAction;
-    public static FiltersAction filtersAction;
-    public static FiltersPage filtersPage;
-    public static LaunchesAction launchesAction;
-
+    WebDriver driver = null;
+    public WebDriver getDriver() {
+        return driver;
+    }
     @BeforeEach
     public void setUp() {
+        driver = new DriverSingleton().getDriver();
         System.out.println("Opening the browser");
-
-        driver = DriverSingleton.getDriver();
-
         System.setProperty("env", "prod");
-
-        loginAction = new LoginAction(driver);
-        sidebarAction = new SidebarAction(driver);
-        filtersAction = new FiltersAction(driver);
-        launchesAction = new LaunchesAction(driver);
-
-        filtersPage = new FiltersPage(driver);
+        String url = ConfigReader.getUrl();
+        getDriver().get(url);
     }
 
     @AfterEach
     public void closeWebDriver() {
-        DriverSingleton.closeDriver();
+        getDriver().quit();
+    }
+
+    public void saveScreenshot() {
+        File screenCapture = ((TakesScreenshot)
+                getDriver())
+                .getScreenshotAs(OutputType.FILE);
+        try {
+            FileUtils.copyFile(screenCapture, new File(
+                    ".//target/screenshots/"
+                            + getCurrentTimeAsString() + ".png"));
+        } catch (IOException e) {
+            System.out.println("Failed to save screenshot: " + e.getLocalizedMessage());
+        }
+    }
+
+    private String getCurrentTimeAsString() {
+        return new GetCurrentTimeToString().getCurrentTimeAsString();
     }
 }

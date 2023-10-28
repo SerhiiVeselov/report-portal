@@ -18,7 +18,9 @@ public class LoginPage extends AbstractPage {
     @FindBy(xpath = "//div/p[contains(text(), 'An error occurred')]")
     private WebElement loginErrorPopUp;
 
-    public LoginPage(WebDriver driver) {super(driver);}
+    public LoginPage(WebDriver driver) {
+        super(driver);
+    }
 
     public WebElement getUsernameField() {
         return usernameField;

@@ -1,14 +1,17 @@
 package actions;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.FluentWait;
+import util.MyFluentWait;
 
-public abstract class AbstractAction {
-
-    public WebDriver driver;
-
+public class AbstractAction {
+    FluentWait<WebDriver> fluentWait;
+    JavascriptExecutor executor;
     public AbstractAction(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        this.fluentWait = MyFluentWait.create(driver);
+        this.executor = (JavascriptExecutor) driver;
     }
+
+
 }
