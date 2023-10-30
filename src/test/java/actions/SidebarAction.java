@@ -28,6 +28,7 @@ public class SidebarAction extends AbstractAction {
             log.info("Login is successful");
             return true;
         } else {
+            log.info("Login is failed");
             return false;
         }
     }

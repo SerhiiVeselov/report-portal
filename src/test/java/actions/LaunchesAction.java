@@ -57,7 +57,9 @@ public class LaunchesAction extends AbstractAction {
         }*/
         String testStatusXpath = String.format("//div[contains(@class, '%s')]/div/a", testStatusName);
         fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(testStatusXpath)));
+
         WebElement statusElement = launchesPage.driver.findElement(By.xpath(testStatusXpath));
+
         log.info("Clicking the first launch with " + testStatusName + " tests count");
         executor.executeScript("arguments[0].scrollIntoView({block: 'center'});", statusElement);
         fluentWait.until(ExpectedConditions.visibilityOf(findFirstLaunchByStatus(testStatusName)));

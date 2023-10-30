@@ -25,7 +25,7 @@ public class JunitTest extends JunitConditions {
         })
         @Description("Add filter: Launch name + Failed")
         public void setLaunchNameAndFailed(String launchName, String filterInput, int launchesAmountOutput) throws InterruptedException {
-            log.info("JUnit Test Name: Add filter: Launch name + Failed");
+            log.info("JUnit Test: Add filter: Launch name + Failed");
             LoginAction loginAction = new LoginAction(getDriver());
             SidebarAction sidebarAction = new SidebarAction(getDriver());
             FiltersAction filtersAction = new FiltersAction(getDriver());
@@ -48,7 +48,7 @@ public class JunitTest extends JunitConditions {
         })
         @Description("Add Launch name + Skipped")
         public void setLaunchNameAndSkipped(String launchName, String filterInput, int launchesAmountOutput) throws InterruptedException {
-            log.info("JUnit Test Name: Add Launch name + Skipped");
+            log.info("JUnit Test: Add Launch name + Skipped");
             LoginAction loginAction = new LoginAction(getDriver());
             SidebarAction sidebarAction = new SidebarAction(getDriver());
             FiltersAction filtersAction = new FiltersAction(getDriver());
@@ -70,7 +70,7 @@ public class JunitTest extends JunitConditions {
                 "Demo, 5, 0"})
         @Description("Add Launch name + Product Bug")
         public void setLaunchNameAndProductBug(String launchName, String filterInput, int launchesAmountOutput) throws InterruptedException {
-            log.info("JUnit Test Name: Add Launch name + Product Bug");
+            log.info("JUnit Test: Add Launch name + Product Bug");
             LoginAction loginAction = new LoginAction(getDriver());
             SidebarAction sidebarAction = new SidebarAction(getDriver());
             FiltersAction filtersAction = new FiltersAction(getDriver());

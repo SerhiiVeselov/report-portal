@@ -8,6 +8,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import pages.FiltersPage;
 
+import java.util.List;
+
+import static org.testng.Assert.assertEquals;
+
 public class FiltersAction extends AbstractAction {
     FiltersPage filtersPage;
     private final Logger log = LoggerSingleton.getLogger();
@@ -80,5 +84,10 @@ public class FiltersAction extends AbstractAction {
         filtersPage.getLaunchNumberConditionsDrpDwn().click();
         fluentWait.until(ExpectedConditions.visibilityOf(filtersPage.getLaunchNumberEquals()));
         filtersPage.getLaunchNumberEquals().click();
+    }
+
+    public void countLaunches(WebDriver driver, String launchName, int expectedResult) {
+        List<WebElement> objectList = driver.findElements(By.xpath("//td[2]//a//span[contains(., '"+launchName+"')]"));
+        assertEquals(expectedResult, objectList.size());
     }
 }

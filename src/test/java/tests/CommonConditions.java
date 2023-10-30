@@ -1,24 +1,13 @@
 package tests;
 
-import actions.FiltersAction;
-import actions.LaunchesAction;
-import actions.LoginAction;
-import actions.SidebarAction;
+import core.ConfigReader;
 import core.DriverSingleton;
-import core.LoggerSingleton;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import pages.FiltersPage;
 
 public class CommonConditions {
     WebDriver driver = null;
-    public static LoggerSingleton log;
-    public static LoginAction loginAction;
-    public static SidebarAction sidebarAction;
-    public static FiltersAction filtersAction;
-    public static FiltersPage filtersPage;
-    public static LaunchesAction launchesAction;
 
     public WebDriver getDriver() {
         return driver;
@@ -26,16 +15,14 @@ public class CommonConditions {
     @BeforeMethod
     public void setUp() {
         driver = new DriverSingleton().getDriver();
+        System.out.println("Opening the browser");
         System.setProperty("env", "prod");
-        loginAction = new LoginAction(getDriver());
-        sidebarAction = new SidebarAction(getDriver());
-        filtersAction = new FiltersAction(getDriver());
-        launchesAction = new LaunchesAction(getDriver());
-        log = new LoggerSingleton();
+        String url = ConfigReader.getUrl();
+        getDriver().get(url);
     }
 
     @AfterMethod
-    public void stopBrowser() {
+    public void closeDriver() {
         getDriver().quit();
     }
 }
