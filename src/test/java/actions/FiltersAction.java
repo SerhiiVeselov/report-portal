@@ -7,9 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import pages.FiltersPage;
-
 import java.util.List;
-
 import static org.testng.Assert.assertEquals;
 
 public class FiltersAction extends AbstractAction {
