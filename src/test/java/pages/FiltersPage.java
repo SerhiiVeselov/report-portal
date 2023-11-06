@@ -5,11 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class FiltersPage extends AbstractPage {
-
-    public FiltersPage(WebDriver driver) {
-        super(driver);
-    }
-
     @FindBy(xpath = "//div[contains(@class, 'add-filter-button')]")
     private WebElement addFilterBtn;
 
@@ -64,6 +59,10 @@ public class FiltersPage extends AbstractPage {
     //Loader spinner
     @FindBy(xpath = "//div[contains(@class, 'spinningPreloader')]")
     private WebElement spinnerPreloader;
+
+    public FiltersPage(WebDriver driver) {
+        super(driver);
+    }
 
     public WebElement getAddFilterBtn() {
         return addFilterBtn;

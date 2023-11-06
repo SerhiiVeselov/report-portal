@@ -82,9 +82,30 @@
         </dependency>
 
         <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-suite-api</artifactId>
+            <version>1.10.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
             <groupId>com.typesafe</groupId>
             <artifactId>config</artifactId>
             <version>1.4.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>7.14.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit-platform-engine</artifactId>
+            <version>7.14.0</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -95,16 +116,15 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.2</version>
                 <configuration>
+                    <parallel>methods</parallel>
+                    <threadCount>4</threadCount>
                     <testFailureIgnore>true</testFailureIgnore>
-
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/testng-report_portal.xml</suiteXmlFile>
                     </suiteXmlFiles>
-
                     <systemPropertyVariables>
                         <browser>chrome</browser>
                     </systemPropertyVariables>
-
                     <systemProperties>
                         <property>
                             <name>allure.results.directory</name>

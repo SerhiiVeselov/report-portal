@@ -9,6 +9,7 @@ import java.io.IOException;
 
 public class Screenshotter {
 
+    /* this is part of test abstract class because it uses the driver to take the screenshot
     public void saveScreenshot() {
         File screenCapture = ((TakesScreenshot) DriverSingleton
                 .getDriver())
@@ -24,5 +25,5 @@ public class Screenshotter {
 
     private String getCurrentTimeAsString() {
         return new GetCurrentTimeToString().getCurrentTimeAsString();
-    }
+    }*/
 }

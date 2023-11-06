@@ -1,15 +1,10 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LaunchesPage extends AbstractPage {
-    public LaunchesPage(WebDriver driver) {
-        super(driver);
-    }
-
     @FindBy(xpath = "//a[contains(text(), 'List view')]")
     private WebElement listViewBtn;
 
@@ -19,10 +14,8 @@ public class LaunchesPage extends AbstractPage {
     @FindBy(xpath = "//div[contains(@class, 'itemCounter__item-counter')]")
     private WebElement launchesCounter;
 
-    public WebElement getTestCasesCountByStatus(String testStatusName) {
-        String testStatusXpath = String.format("//div[contains(@class, '%s')]/div/a", testStatusName);
-        WebElement testCasesCountByStatus = driver.findElement(By.xpath(testStatusXpath));
-        return testCasesCountByStatus;
+    public LaunchesPage(WebDriver driver) {
+        super(driver);
     }
 
     public WebElement getListViewBtn() {

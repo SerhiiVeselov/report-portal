@@ -7,13 +7,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class DriverSingleton {
+public class DriverParallel {
 
-    private static WebDriver driver;
+    WebDriver driver = null;
 
-    private DriverSingleton() {}
-
-    public static WebDriver getDriver() {
+    public WebDriver getDriver() {
         if (null == driver) {
         System.out.println("Creating driver instance");
             switch (System.getProperty("browser")) {
@@ -41,7 +39,7 @@ public class DriverSingleton {
         return driver;
     }
 
-    public static void closeDriver() {
+    public void closeDriver() {
         if (driver != null) {
             driver.quit();
             driver = null;

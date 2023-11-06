@@ -5,24 +5,17 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.slf4j.Logger;
 import pages.FiltersPage;
-import pages.LaunchesPage;
-import util.MyFluentWait;
+import java.util.List;
+import static org.testng.Assert.assertEquals;
 
-public class FiltersAction {
-
-    FluentWait<WebDriver> fluentWait;
+public class FiltersAction extends AbstractAction {
     FiltersPage filtersPage;
-    LaunchesPage launchesPage;
-
     private final Logger log = LoggerSingleton.getLogger();
-
     public FiltersAction(WebDriver driver) {
-        fluentWait = MyFluentWait.create(driver);
+        super(driver);
         filtersPage = new FiltersPage(driver);
-        launchesPage = new LaunchesPage(driver);
     }
 
     public void activateFiltering() {
@@ -89,5 +82,10 @@ public class FiltersAction {
         filtersPage.getLaunchNumberConditionsDrpDwn().click();
         fluentWait.until(ExpectedConditions.visibilityOf(filtersPage.getLaunchNumberEquals()));
         filtersPage.getLaunchNumberEquals().click();
+    }
+
+    public void countLaunches(WebDriver driver, String launchName, int expectedResult) {
+        List<WebElement> objectList = driver.findElements(By.xpath("//td[2]//a//span[contains(., '"+launchName+"')]"));
+        assertEquals(expectedResult, objectList.size());
     }
 }
