@@ -32,29 +32,6 @@ public class LaunchesAction extends AbstractAction {
     }
 
     public void selectTestsCountByStatus(String testStatusName) {
-        /*
-        All these lines are doing the same instead let's change them to fluent wait
-        WebElement statusElement = null;
-        switch (testStatusName) {
-            case "total":
-                log.info("Checking launches with Total status");
-                statusElement = getTestCasesCountByStatus(testStatusName);
-                break;
-            case "passed":
-                log.info("Checking launches with Passed status");
-                statusElement = getTestCasesCountByStatus(testStatusName);
-                break;
-            case "failed":
-                log.info("Checking launches with Failed status");
-                statusElement = getTestCasesCountByStatus(testStatusName);
-                break;
-            case "skipped":
-                log.info("Checking launches with Skipped status");
-                statusElement = getTestCasesCountByStatus(testStatusName);
-                break;
-        }
-        if (statusElement != null) {
-        }*/
         String testStatusXpath = String.format("//div[contains(@class, '%s')]/div/a", testStatusName);
         fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(testStatusXpath)));
 

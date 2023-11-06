@@ -1,7 +1,7 @@
 package tests;
 
 import core.ConfigReader;
-import core.DriverSingleton;
+import core.DriverParallel;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.OutputType;
@@ -18,7 +18,7 @@ public class JunitConditions {
     }
     @BeforeEach
     public void setUp() {
-        driver = new DriverSingleton().getDriver();
+        driver = new DriverParallel().getDriver();
         System.out.println("Opening the browser");
         System.setProperty("env", "prod");
         String url = ConfigReader.getUrl();

@@ -1,7 +1,7 @@
 package tests;
 
 import core.ConfigReader;
-import core.DriverSingleton;
+import core.DriverParallel;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -14,7 +14,7 @@ public class CommonConditions {
     }
     @BeforeMethod
     public void setUp() {
-        driver = new DriverSingleton().getDriver();
+        driver = new DriverParallel().getDriver();
         System.out.println("Opening the browser");
         System.setProperty("env", "prod");
         String url = ConfigReader.getUrl();
