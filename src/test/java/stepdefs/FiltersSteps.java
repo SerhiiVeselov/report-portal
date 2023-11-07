@@ -13,6 +13,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.jupiter.api.extension.Extension;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 
@@ -25,7 +26,6 @@ public class FiltersSteps {
     public static void driverSetUp() {
 
         driver = CucumberDriver.getDriver();
-        System.out.println("Opening the browser");
         System.setProperty("env", "prod");
         String url = ConfigReader.getUrl();
         driver.get(url);
@@ -47,6 +47,7 @@ public class FiltersSteps {
     @Given("User is logged in")
     public void userIsLoggedIn() {
         driverSetUp();
+        log.info("Cucumber Test");
         log.info("Logging into the app");
         LoginAction loginAction = new LoginAction(driver);
         loginAction.doLogin();
