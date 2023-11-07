@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Report Portal Tests" verbose="1">
-    <test name="ReportPortalTest" parallel="methods" thread-count="2">
+<!-- For parallel execution:   -->
+<!--    <test name="ReportPortalTest" parallel="methods" thread-count="2">-->
+    <test name="ReportPortalTest">
         <classes>
             <class name="tests.FiltersTest"/>
             <class name="tests.LaunchViewTest"/>
@@ -10,6 +12,11 @@
     <test name="JunitTest">
         <classes>
             <class name="tests.JunitTest"/>
+        </classes>
+    </test>
+    <test name="CucumberTest">
+        <classes>
+            <class name="tests.CucumberRunner"/>
         </classes>
     </test>
     <listeners>

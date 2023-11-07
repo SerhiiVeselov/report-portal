@@ -1,8 +1,12 @@
 package tests;
 
-import io.cucumber.junit.platform.engine.Cucumber;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
 
-@Cucumber
-public class CucumberRunner {
+@CucumberOptions(
+        features = "src/test/resources/features",
+        glue = "stepdefs"
+)
+public class CucumberRunner extends AbstractTestNGCucumberTests {
 
 }
