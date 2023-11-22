@@ -8,4 +8,8 @@ prod:
   username: pungvun4uk
   password: Welcome!123
 
+api:
+  url: https://reportportal.epam.com/api/v1/
+  username: pungvun4uk
+  password: Welcome!123
 

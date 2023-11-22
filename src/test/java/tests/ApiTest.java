@@ -1,5 +1,6 @@
 package tests;
 
+import core.ConfigReader;
 import core.LoggerSingleton;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -22,20 +23,27 @@ public class ApiTest extends BaseApiClient {
     private int incorrectLaunchId = 666;
     private String latestUuid;
     private String latestLaunchId;
+    private String baseApiUrl;
+    private String username;
+    private String password;
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     String currentDate = ZonedDateTime.now().format(formatter);
 
     @BeforeTest
     public void setUp() {
-        bearerToken = getBearerToken("password","pungvun4uk", "Welcome!123");
+        System.setProperty("env", "api");
+        baseApiUrl = ConfigReader.getUrl();
+        username = ConfigReader.getUsername();
+        password = ConfigReader.getPassword();
+        bearerToken = getBearerToken("password", username, password);
     }
 
     @Test(priority = 1, testName = "GET Positive - Get launch by id")
     @Description("API Test GET - Get launch by its Id")
     public void getLaunchById() {
         given().auth().oauth2(bearerToken).
-        when().get("https://reportportal.epam.com/api/v1/" + projectName + "/launch?filter.eq.id=" + launchId).
+        when().get(baseApiUrl + projectName + "/launch?filter.eq.id=" + launchId).
         then().log().body().assertThat().statusCode(200).body("content[0].id", equalTo(launchId));
     }
 
@@ -44,7 +52,7 @@ public class ApiTest extends BaseApiClient {
     public void getLaunchByIncorrectId() {
         given().auth().oauth2(bearerToken)
                 .when()
-                .get("https://reportportal.epam.com/api/v1/" + projectName + "/launch?filter.eq.id=" + incorrectLaunchId)
+                .get(baseApiUrl + projectName + "/launch?filter.eq.id=" + incorrectLaunchId)
                 .then()
                 .log().body()
                 .assertThat().statusCode(200).body("page[0].totalElements", equalTo(null));
@@ -60,7 +68,7 @@ public class ApiTest extends BaseApiClient {
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .post("https://reportportal.epam.com/api/v1/" + projectName + "/launch/analyze")
+                .post(baseApiUrl + projectName + "/launch/analyze")
                 .then()
                 .log().body()
                 .assertThat().statusCode(200).body("message", equalTo("autoAnalyzer analysis for launch with ID='" + launchId + "' started."));
@@ -76,7 +84,7 @@ public class ApiTest extends BaseApiClient {
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .post("https://reportportal.epam.com/api/v1/" + projectName + "/launch/analyze")
+                .post(baseApiUrl + projectName + "/launch/analyze")
                 .then()
                 .log().body()
                 .assertThat().statusCode(404).body("message", equalTo("Launch '" + incorrectLaunchId + "' not found. Did you use correct Launch ID?"));
@@ -92,7 +100,7 @@ public class ApiTest extends BaseApiClient {
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .put("https://reportportal.epam.com/api/v1/" + projectName + "/launch/" + launchId + "/update")
+                .put(baseApiUrl + projectName + "/launch/" + launchId + "/update")
                 .then()
                 .log().body()
                 .assertThat().statusCode(200).body("message", equalTo("Launch with ID = '" + launchId + "' successfully updated."));
@@ -108,7 +116,7 @@ public class ApiTest extends BaseApiClient {
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .put("https://reportportal.epam.com/api/v1/" + projectName + "/launch/" + launchId + "/update")
+                .put(baseApiUrl + projectName + "/launch/" + launchId + "/update")
                 .then()
                 .log().body()
                 .assertThat().statusCode(400).body("message", containsString("Incorrect Request."));
@@ -124,7 +132,7 @@ public class ApiTest extends BaseApiClient {
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .put("https://reportportal.epam.com/api/v1/" + projectName + "/launch/" + incorrectLaunchId + "/update")
+                .put(baseApiUrl + projectName + "/launch/" + incorrectLaunchId + "/update")
                 .then()
                 .log().body()
                 .assertThat().statusCode(404).body("message", equalTo("Launch '" + incorrectLaunchId + "' not found. Did you use correct Launch ID?"));
@@ -140,7 +148,7 @@ public class ApiTest extends BaseApiClient {
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .post("https://reportportal.epam.com/api/v1/" + projectName + "/launch")
+                .post(baseApiUrl + projectName + "/launch")
                 .then()
                 .log().body()
                 .assertThat().statusCode(201)
@@ -167,7 +175,7 @@ public class ApiTest extends BaseApiClient {
                 auth().oauth2(bearerToken)
                 .contentType(ContentType.JSON)
                 .when()
-                .delete("https://reportportal.epam.com/api/v1/" + projectName + "/launch/" + latestLaunchId)
+                .delete(baseApiUrl + projectName + "/launch/" + latestLaunchId)
                 .then()
                 .log().body()
                 .assertThat().statusCode(200).body("message", equalTo("Launch with ID = '" + latestLaunchId + "' successfully deleted."));
@@ -182,7 +190,7 @@ public class ApiTest extends BaseApiClient {
                 auth().oauth2(bearerToken)
                 .contentType(ContentType.JSON)
                 .when()
-                .delete("https://reportportal.epam.com/api/v1/" + projectName + "/launch/" + incorrectLaunchId)
+                .delete(baseApiUrl + projectName + "/launch/" + incorrectLaunchId)
                 .then()
                 .log().body()
                 .assertThat().statusCode(404).body("message", equalTo("Launch '" + incorrectLaunchId + "' not found. Did you use correct Launch ID?"));

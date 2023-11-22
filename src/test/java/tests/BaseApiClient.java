@@ -11,6 +11,7 @@ public class BaseApiClient {
 
     private final Logger log = LoggerSingleton.getLogger();
     protected String loginUri = "https://reportportal.epam.com/uat/sso/oauth/token";
+    private String baseApiUrl = "https://reportportal.epam.com/api/v1/";
 
     public String getBearerToken(String grantType, String username, String password) {
         log.info("Getting bearer token for the user");
@@ -43,7 +44,7 @@ public class BaseApiClient {
                 .auth().oauth2(bearerToken)
                 .contentType(ContentType.JSON)
                 .when()
-                .get("https://reportportal.epam.com/api/v1/"+ projectName + "/launch/latest?filter.eq.uuid=" + latestUuid)
+                .get(baseApiUrl + projectName + "/launch/latest?filter.eq.uuid=" + latestUuid)
                 .then()
                 .log().body()
                 .assertThat().statusCode(200).extract().response();
@@ -72,7 +73,7 @@ public class BaseApiClient {
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                .put("https://reportportal.epam.com/api/v1/" + projectName + "/launch/stop")
+                .put(baseApiUrl + projectName + "/launch/stop")
                 .then()
                 .log().body()
                 .assertThat().statusCode(200);
