@@ -55,7 +55,6 @@ public class FiltersSteps {
 
     @And("Launches page is opened")
     public void launchesPageIsOpened() {
-        log.info("Opening Launches page");
         sidebarAction.openLaunchesPage();
     }
 

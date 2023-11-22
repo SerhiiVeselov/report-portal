@@ -10,6 +10,9 @@ import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.slf4j.Logger;
+
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.parallel.ExecutionMode.CONCURRENT;
 
 public class JunitTest extends JunitConditions {
