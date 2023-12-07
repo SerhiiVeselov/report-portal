@@ -6,19 +6,19 @@ import org.testng.ITestResult;
 
 public class TestListener implements ITestListener {
 
-    public Screenshotter screenshotter;
+    private Screenshotter screenshotter;
+    private CucumberDriver driver;
 
     public void onTestStart(ITestResult iTestResult) {
         System.out.println("Test execution is started");
     }
 
     public void onTestSuccess(ITestResult iTestResult) {
-
     }
 
     public void onTestFailure(ITestResult iTestResult) {
-        screenshotter = new Screenshotter();
-        //screenshotter.saveScreenshot();
+        screenshotter = new Screenshotter(driver);
+        screenshotter.takeScreenshot();
     }
 
     public void onTestSkipped(ITestResult iTestResult) {
