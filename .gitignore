@@ -2,3 +2,4 @@
 /target/
 src/main/java/core/WebDriverFactory.java
 src/test/resources/junit-platform.properties
+build/reports/tests

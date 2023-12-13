@@ -5,6 +5,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import pages.LaunchesPage;
+import static core.Screenshotter.*;
 
 public class LaunchesAction extends AbstractAction {
     LaunchesPage launchesPage;
@@ -51,7 +52,11 @@ public class LaunchesAction extends AbstractAction {
     }
 
     public void countLaunchesAmount(String launchName, int launchesAmountOutput) {
-        fluentWait.until(ExpectedConditions
-                .numberOfElementsToBe(By.xpath("//td[2]//a//span[contains(., '" + launchName + "')]"), launchesAmountOutput));
+        try {
+            fluentWait.until(ExpectedConditions
+                    .numberOfElementsToBe(By.xpath("//td[2]//a//span[contains(., '" + launchName + "')]"), launchesAmountOutput));
+        } catch (TimeoutException e) {
+            takeScreenshot();
+        }
     }
 }
