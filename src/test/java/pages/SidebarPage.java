@@ -22,6 +22,4 @@ public class SidebarPage extends AbstractPage {
     public WebElement getLaunchesSidebarBtn() {
         return launchesSidebarBtn;
     }
-
-
 }
