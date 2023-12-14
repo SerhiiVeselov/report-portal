@@ -9,7 +9,6 @@ import core.ConfigReader;
 import core.LoggerSingleton;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.JavascriptExecutor;
 import org.slf4j.Logger;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
